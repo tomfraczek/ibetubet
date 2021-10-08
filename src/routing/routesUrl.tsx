@@ -1,4 +1,4 @@
 export const RouteUrl = {
     home: '/',
-    race: '/race',
+    race: '/race/:raceId',
 };

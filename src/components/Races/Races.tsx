@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import { useStyles } from './styles';
 
@@ -11,12 +12,15 @@ interface Race {
     id: number;
 }
 
-const Races: FC<Props> = ({ races }) => (
-    <ul>
-        {races.map((race: Race) => (
-            <li key={race.id}>{race.name}</li>
-        ))}
-    </ul>
-);
+const Races: FC<Props> = ({ races }) => {
+    const classes = useStyles();
+    return (
+        <div className={classes.racesContainer}>
+            {races.map((race: Race) => (
+                <Link to={`race/${race.id}`}>{race.name}</Link>
+            ))}
+        </div>
+    );
+};
 
 export default Races;

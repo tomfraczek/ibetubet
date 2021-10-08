@@ -13,7 +13,6 @@ const LandingPage: FC = () => {
     useEffect(() => {
         getRaces().then(
             response => {
-                console.log(response);
                 setRaces(response);
             },
             error => {
