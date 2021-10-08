@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
+import { useLocation } from 'react-router-dom';
 
 import { useStyles } from './styles';
 
@@ -13,13 +14,16 @@ interface Race {
 }
 
 const Races: FC<Props> = ({ races }) => {
-    const classes = useStyles();
+    const history = useHistory();
+
     return (
-        <div className={classes.racesContainer}>
+        <ul>
             {races.map((race: Race) => (
-                <Link to={`race/${race.id}`}>{race.name}</Link>
+                <li onClick={() => history.push(`race/${race.id}`)} key={race.id}>
+                    {race.name}
+                </li>
             ))}
-        </div>
+        </ul>
     );
 };
 

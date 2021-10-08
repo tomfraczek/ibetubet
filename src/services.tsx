@@ -5,7 +5,7 @@ export const getRaces = async () => {
     return data;
 };
 
-export const getRace = async (raceId: number) => {
+export const getRace = async (raceId: string) => {
     const { data } = await api.get(`races/${raceId}`);
     return data;
 };
