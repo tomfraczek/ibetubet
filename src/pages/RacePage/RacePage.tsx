@@ -1,10 +1,14 @@
 import clsx from 'clsx';
 import { isEmpty } from 'lodash';
 import { FC, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
+import { bindActionCreators } from 'redux';
 
 import ParticipantsTable from '../../components/ParticipantsTable';
 import { getRace } from '../../services';
+import { actionCreators } from '../../state';
+import { RootState } from '../../state/reducers';
 import { useStyles } from './styles';
 
 const RacePage: FC = () => {
@@ -12,6 +16,11 @@ const RacePage: FC = () => {
     const [race, setRace] = useState<any>(null);
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const classes = useStyles();
+
+    const state = useSelector((state: RootState) => state.bank);
+    const dispatch = useDispatch();
+
+    const { depositMoney, withdrawMoney, bankrupt } = bindActionCreators(actionCreators, dispatch);
 
     useEffect(() => {
         const raceId = pathname.split('/')[2];
